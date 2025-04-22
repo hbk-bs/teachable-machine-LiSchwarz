@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<link rel="stylesheet" href="index.css" />
+	<style>
+ body {
+/* Geometric Humanist */
+font-family: Avenir, Montserrat, Corbel, 'URW Gothic', source-sans-pro, sans-serif;
+font-weight: normal; }</style></head>
+	<body>
+		<header>
+			<h1>
+				Ist das Glas <span class="highlight">halb voll</span>
+			</h1>
+		</header>
+		<main>
+			<div id="status"></div>
+			<div id="sketch"></div>
+			<div id="buttons"></div>
+			</div>
+			<div id="labels">
+				<div><span>Wahrscheinlichkeit: </span><span id="confidence"></span></div>
+				<div><span>Ergebnis: </span><span id="label"></span></div>
+			</div>
+			<div class="bottom-right">oder <span class="highlight">halb leer?</span></div>
+			<p></p>
+			<a href="index.js">source code</a>
+		</main>
+
+		<script src="lib/ml5.1.2.1.min.js"></script>
+		<script src="lib/p5.min.js"></script>
+		<script src="index.js"></script>
+	</body>
+</html>

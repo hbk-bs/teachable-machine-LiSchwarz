@@ -1,0 +1,158 @@
+body {
+    margin: 0;
+    padding: 20px;
+    font-family: Avenir, Montserrat, Corbel, 'URW Gothic', source-sans-pro, sans-serif;
+    font-weight: normal;
+    background-image: url('https://hbk-bs.github.io/the-archives-LiSchwarz/assets/images/wasser.jpeg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    min-height: 100vh;
+}
+
+main {
+    background-color: rgba(255, 255, 255, 0.8); /* Halbtransparenter Hintergrund für den Inhalt */
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+#sketch {
+    position: relative; /* Wichtig für die Positionierung von .bottom-right */
+    margin: 20px 0;
+    max-width: 400px; /* Maximale Breite auf 200px begrenzen */
+    width: 100%; /* Sicherstellen, dass es sich an kleinere Bildschirme anpasst */
+}
+
+#sketch canvas{
+    border-radius: 10px;
+}
+
+#buttons {
+    display: flex; /* Aktiviert Flexbox für die Buttons */
+    justify-content: center; /* Zentriert die Buttons horizontal */
+    flex-wrap: wrap; /* Ermöglicht das Umbrechen der Buttons bei kleinen Bildschirmen */
+    gap: 10px; /* Abstand zwischen den Buttons */
+    margin-top: 20px; /* Abstand nach oben */
+}
+
+#buttons button {
+    font-family: Avenir, Montserrat, Corbel, 'URW Gothic', source-sans-pro, sans-serif;
+    background-color: #d1690e; /* Orange Hintergrundfarbe */
+    color: white; /* Weiße Schriftfarbe */
+    border: none; /* Entfernt den Standardrahmen */
+    border-radius: 5px; /* Abgerundete Ecken */
+    padding: 10px 20px; /* Innenabstand für eine bessere Größe */
+    font-size: 16px; /* Schriftgröße */
+    cursor: pointer; /* Zeigt den Mauszeiger als Hand an */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Leichter Schatten */
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Sanfte Übergänge */
+}
+
+#buttons button:hover {
+    background-color: #e48c3f; /* Dunkleres Orange beim Hover */
+    transform: scale(1.05); /* Leichtes Vergrößern beim Hover */
+}
+
+#buttons button:active {
+    background-color: #af570a; /* Noch dunkleres Orange beim Klicken */
+    transform: scale(0.95); /* Leichtes Verkleinern beim Klicken */
+}
+
+#labels {
+    margin-top: 20px;
+}
+
+header {
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+header h1 {
+    font-size: 30px;
+    color: #2d2d2d;
+    margin: 40px;
+    padding: 10px;
+    font-weight: 500; /* Macht den gesamten Text dicker */
+}
+
+header h1 .highlight {
+    font-size: 72px; /* Größer als der Rest */
+    font-weight: 900; /* Noch dicker für die hervorgehobenen Wörter */
+    color: #2d2d2d;
+}
+
+.bottom-right {
+    position: fixed; /* Fixiert das Element relativ zum gesamten Bildschirm */
+    bottom: 40px; /* Vergrößerter Abstand vom unteren Rand */
+    right: 40px; /* Vergrößerter Abstand vom rechten Rand */
+    font-size: 30px; /* Standardgröße für "oder" */
+    font-weight: 500; /* Schriftgewicht */
+    color: #2d2d2d; /* Textfarbe */
+    text-align: right; /* Text rechtsbündig */
+}
+
+.bottom-right .highlight {
+    font-size: 72px; /* Größer als der Rest */
+    font-weight: 900; /* Fettgedruckt für Hervorhebung */
+    color: #2d2d2d; /* Gleiche Farbe wie der Rest */
+}
+
+a {
+    color: #33333352;
+    font-weight: 900;
+    text-decoration: none;
+    display: flex; /* Aktiviert Flexbox für die Buttons */
+    justify-content: right; /* Zentriert die Buttons horizontal */
+    margin-top: 20px;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Für Bildschirme kleiner als 768px (Tablets und Smartphones) */
+@media (max-width: 768px) {
+    main {
+        max-width: 90%; /* Verkleinert den Hauptcontainer */
+        padding: 15px; /* Weniger Innenabstand */
+    }
+
+    #sketch {
+        max-width: 100%; /* Passt die Breite des Sketch-Containers an */
+        margin: 10px 0; /* Weniger Abstand */
+    }
+
+    #buttons button {
+        font-size: 14px; /* Kleinere Schriftgröße für Buttons */
+        padding: 8px 15px; /* Weniger Innenabstand */
+    }
+}
+
+/* Für Bildschirme kleiner als 480px (Smartphones) */
+@media (max-width: 480px) {
+    #buttons {
+        flex-direction: column; /* Buttons untereinander anordnen */
+        align-items: center; /* Zentriert die Buttons */
+    }
+
+    #buttons button {
+        width: 100%; /* Buttons nehmen die gesamte Breite ein */
+        max-width: 300px; /* Begrenzung der maximalen Breite */
+    }
+
+    /* Stil für kleinere Bildschirme (maximal 768px Breite) */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 24px; /* Kleinere Schriftgröße für Tablets */
+    }
+}
+
+/* Stil für sehr kleine Bildschirme (maximal 480px Breite) */
+@media (max-width: 480px) {
+    header h1 {
+        font-size: 18px; /* Noch kleinere Schriftgröße für Smartphones */
+    }
+}
+}

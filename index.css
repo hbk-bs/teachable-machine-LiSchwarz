@@ -14,18 +14,20 @@ main {
     background-color: rgba(255, 255, 255, 0.8); /* Halbtransparenter Hintergrund für den Inhalt */
     padding: 20px;
     border-radius: 10px;
-    max-width: 400px;
-    margin: 0 auto;
+    max-width: 500px; /* Maximale Breite für Desktop */
+    width: 90%; /* Flexible Breite für kleinere Bildschirme */
+    margin: 20px auto; /* Zentriert den Container */
 }
 
 #sketch {
-    position: relative; /* Wichtig für die Positionierung von .bottom-right */
+    position: relative;
+    width: 100%; /* Passt sich an die Breite von 'main' an */
     margin: 20px 0;
-    max-width: 400px; /* Maximale Breite auf 200px begrenzen */
-    width: 100%; /* Sicherstellen, dass es sich an kleinere Bildschirme anpasst */
 }
 
-#sketch canvas{
+#sketch canvas {
+    width: 100% !important;
+    height: auto !important;
     border-radius: 10px;
 }
 
@@ -112,47 +114,43 @@ a:hover {
     text-decoration: underline;
 }
 
-/* Für Bildschirme kleiner als 768px (Tablets und Smartphones) */
+/* Für Tablets und Smartphones */
 @media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+
     main {
-        max-width: 90%; /* Verkleinert den Hauptcontainer */
-        padding: 15px; /* Weniger Innenabstand */
+        padding: 15px;
     }
 
-    #sketch {
-        max-width: 100%; /* Passt die Breite des Sketch-Containers an */
-        margin: 10px 0; /* Weniger Abstand */
+    header h1, .bottom-right {
+        font-size: 24px;
+    }
+
+    header h1 .highlight, .bottom-right .highlight {
+        font-size: 48px;
     }
 
     #buttons button {
-        font-size: 14px; /* Kleinere Schriftgröße für Buttons */
-        padding: 8px 15px; /* Weniger Innenabstand */
+        font-size: 14px;
+        padding: 8px 15px;
     }
 }
 
-/* Für Bildschirme kleiner als 480px (Smartphones) */
+/* Für sehr kleine Bildschirme (Smartphones) */
 @media (max-width: 480px) {
+    header h1, .bottom-right {
+        font-size: 18px;
+        margin: 20px;
+    }
+
+    header h1 .highlight, .bottom-right .highlight {
+        font-size: 36px;
+    }
+
     #buttons {
-        flex-direction: column; /* Buttons untereinander anordnen */
-        align-items: center; /* Zentriert die Buttons */
+        flex-direction: column; /* Buttons untereinander */
+        align-items: stretch; /* Füllen die Breite aus */
     }
-
-    #buttons button {
-        width: 100%; /* Buttons nehmen die gesamte Breite ein */
-        max-width: 300px; /* Begrenzung der maximalen Breite */
-    }
-
-    /* Stil für kleinere Bildschirme (maximal 768px Breite) */
-@media (max-width: 768px) {
-    header h1 {
-        font-size: 24px; /* Kleinere Schriftgröße für Tablets */
-    }
-}
-
-/* Stil für sehr kleine Bildschirme (maximal 480px Breite) */
-@media (max-width: 480px) {
-    header h1 {
-        font-size: 18px; /* Noch kleinere Schriftgröße für Smartphones */
-    }
-}
 }

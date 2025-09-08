@@ -77,6 +77,13 @@ header h1 {
     margin: 40px;
     padding: 10px;
     font-weight: 500; /* Macht den gesamten Text dicker */
+    
+    /* NEU: Flexbox für saubere Ausrichtung */
+    display: flex;
+    justify-content: center; /* Zentriert den Inhalt des h1 */
+    align-items: baseline;   /* Richtet Texte unterschiedlicher Größe an der Grundlinie aus */
+    flex-wrap: wrap;         /* Erlaubt Umbruch auf kleinen Bildschirmen */
+    gap: 0.25em;             /* Kleiner Abstand zwischen den Wörtern */
 }
 
 header h1 .highlight {

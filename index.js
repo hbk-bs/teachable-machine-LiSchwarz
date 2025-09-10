@@ -9,7 +9,8 @@ let classifiying = false;
 let backgroundImg;
 
 function preload() {
-    backgroundImg = loadImage('https://hbk-bs.github.io/the-archives-LiSchwarz/assets/images/wasser.jpeg'); // Replace with your image path
+    // ... (Dein preload-Code bleibt unverändert)
+    backgroundImg = loadImage('https://hbk-bs.github.io/the-archives-LiSchwarz/assets/images/wasser.jpeg');
     const status = select("#status");
     let imageModelURL =
         "https://teachablemachine.withgoogle.com/models/1HurWFWNw/";
@@ -29,44 +30,91 @@ function preload() {
 }
 
 function setup() {
-    cnv = createCanvas(400, 200);
+    // Die Canvas wird responsiv erstellt
+    const sketchHolder = select("#sketch");
+    const canvasWidth = sketchHolder.width;
+    cnv = createCanvas(canvasWidth, canvasWidth / 2);
     cnv.parent("sketch");
     background(255);
 
-    px = mouseX; // initialize previous mouse x
-    py = mouseY; // initialize previous mouse y
+    // Initialisiere die vorherigen Mauspositionen
+    px = mouseX;
+    py = mouseY;
 
     // Button to save the canvas
     saveButton = createButton("Prüfen");
     saveButton.parent("buttons");
+    saveButton.mousePressed(classifyCanvas);
 
     // Button to clear the canvas
     clearButton = createButton("Löschen");
     clearButton.parent("buttons");
     clearButton.mousePressed(clearCanvas);
 
-    saveButton.mousePressed(classifyCanvas);
     strokeCap(ROUND);
-    const status = select("#status");
 }
 
+// NEU: Diese Funktion wird aufgerufen, wenn das Fenster seine Größe ändert
+function windowResized() {
+    const sketchHolder = select("#sketch");
+    const canvasWidth = sketchHolder.width;
+    resizeCanvas(canvasWidth, canvasWidth / 2);
+    background(255); // Zeichnet den Hintergrund neu, um die alte Zeichnung zu entfernen
+}
+
+// NEU: Die eigentliche Zeichenlogik, ausgelagert in eine eigene Funktion
+function drawLine() {
+    // Die Linienstärke wird basierend auf der Zeichengeschwindigkeit berechnet
+    let weight = dist(px, py, mouseX, mouseY);
+    strokeWeight(constrain(weight, 2, 15)); // Etwas dickere Linien für bessere Sichtbarkeit
+    line(px, py, mouseX, mouseY);
+
+    // Aktualisiere die vorherigen Positionen
+    px = mouseX;
+    py = mouseY;
+}
+
+// NEU: Diese Funktion wird nur für die MAUS auf dem Desktop verwendet
+function mouseDragged() {
+    drawLine();
+    // Verhindert, dass Text auf der Seite markiert wird, während man zeichnet
+    return false;
+}
+
+// NEU: Diese Funktion wird bei BERÜHRUNG auf mobilen Geräten aufgerufen
+function touchMoved() {
+    drawLine();
+    // WICHTIG: Verhindert, dass die Seite beim Zeichnen scrollt
+    return false;
+}
+
+// NEU: Setzt die Startposition beim Klicken oder Tippen zurück
+function mousePressed() {
+    px = mouseX;
+    py = mouseY;
+}
+function touchStarted() {
+    px = mouseX;
+    py = mouseY;
+}
+
+
+// Die alte draw()-Funktion wird nicht mehr zum Zeichnen benötigt
 function draw() {
-    if (mouseIsPressed) {
-        let weight = dist(px, py, mouseX, mouseY);
-        strokeWeight(constrain(weight, 1, 10));
-        line(px, py, mouseX, mouseY);
-    }
-    px = mouseX; // updates previous mouse x
-    py = mouseY; // updates previous mouse y
+    // Diese Funktion kann leer bleiben oder für andere Animationen genutzt werden
 }
 
 // Function to clear the canvas
 function clearCanvas() {
     background(255);
+    // Setzt die Statusmeldung zurück
+    const status = select("#status");
+    status.elt.innerText = "Zeichne hier dein Wasserglas";
 }
 
 // Function to classify the canvas and update the status message
 function classifyCanvas() {
+    // ... (Dein classifyCanvas-Code bleibt unverändert)
     classifiying = true;
     const status = select("#status");
     status.elt.innerText = "Verarbeitung...";
@@ -74,7 +122,6 @@ function classifyCanvas() {
     classifier.classify(img, (results) => {
         classifiying = false;
 
-        // Update the status message based on the result
         if (results[0].label === "halbleer") {
             status.elt.innerText = "Die KI sollte optimistischer sein!";
         } else if (results[0].label === "halbvoll") {
@@ -83,7 +130,6 @@ function classifyCanvas() {
             status.elt.innerText = "Zeichne hier dein Wasserglas";
         }
 
-        // Update the label and confidence
         labelElement = select("#label");
         labelElement.elt.innerText = `${results[0].label}`;
         confidenceElement = select("#confidence");

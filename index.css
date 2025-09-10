@@ -22,12 +22,19 @@ main {
     max-width: 500px; /* Maximale Breite für Desktop */
     width: 90%; /* Flexible Breite für kleinere Bildschirme */
     margin: 20px auto; /* Zentriert den Container */
+    position: relative; /* NEU: Macht diesen Container zum Bezugspunkt */
 }
 
 #sketch {
     position: relative;
     width: 100%; /* Passt sich an die Breite von 'main' an */
     margin: 20px 0;
+    z-index: 10;    
+}
+
+#buttons, #labels, #status{
+    position: relative; /* NEU: Stellt sicher, dass diese Elemente auch positionierbar sind */
+    z-index: 1;         /* NEU: Legt sie auf eine niedrigere Ebene als die Zeichenfläche */
 }
 
 #sketch canvas {
@@ -98,14 +105,14 @@ header h1 .highlight {
 }
 
 .bottom-right {
-    position: fixed; /* Fixiert das Element relativ zum gesamten Bildschirm */
-    bottom: 40px; /* Vergrößerter Abstand vom unteren Rand */
-    right: 40px; /* Vergrößerter Abstand vom rechten Rand */
+    position: absolute; /* NEU: Positioniert sich relativ zu 'main' */
+    bottom: -110px; /* Passt zum Innenabstand von 'main' */
+    right: 20px; /* Passt zum Innenabstand von 'main' */
     font-size: 30px; /* Standardgröße für "oder" */
     font-weight: 500; /* Schriftgewicht */
     color: #2d2d2d; /* Textfarbe */
     text-align: right; /* Text rechtsbündig */
-    z-index: -1; /* NEU: Legt das Element hinter alles andere */
+    z-index: 1; 
 }
 
 .bottom-right .highlight {

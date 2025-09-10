@@ -18,17 +18,17 @@ font-weight: normal; }</style></head>
             </h1>
         </header>
         <main>
+            <!-- Alle anderen Inhalte von main -->
             <div id="status"></div>
             <div id="sketch"></div>
             <div id="buttons"></div>
-            <div id="labels">
-                <div><span>Wahrscheinlichkeit: </span><span id="confidence"></span></div>
-                <div><span>Ergebnis: </span><span id="label"></span></div>
-            </div>
+            <div id="labels"></div>
+
+            <!-- Dieses Element muss am Ende innerhalb von main stehen -->
+            <div class="bottom-right">oder <span class="highlight">halb leer?</span></div>
         </main>
 
-        <!-- Diese Elemente kommen jetzt NACH main, direkt in den body -->
-        <div class="bottom-right">oder <span class="highlight">halb leer?</span></div>
+        <!-- Dieses Element bleibt außerhalb -->
         <a href="index.js">source code</a>
 
         <script src="lib/ml5.1.2.1.min.js"></script>

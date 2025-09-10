@@ -105,6 +105,7 @@ header h1 .highlight {
     font-weight: 500; /* Schriftgewicht */
     color: #2d2d2d; /* Textfarbe */
     text-align: right; /* Text rechtsbündig */
+    z-index: -1; /* NEU: Legt das Element hinter alles andere */
 }
 
 .bottom-right .highlight {

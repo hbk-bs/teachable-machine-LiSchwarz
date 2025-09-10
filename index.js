@@ -74,29 +74,32 @@ function drawLine() {
     py = mouseY;
 }
 
+// NEU: Setzt die Startposition für Maus und Touch
+function startStroke() {
+    px = mouseX;
+    py = mouseY;
+}
+
 // NEU: Diese Funktion wird nur für die MAUS auf dem Desktop verwendet
 function mouseDragged() {
     drawLine();
-    // Verhindert, dass Text auf der Seite markiert wird, während man zeichnet
-    return false;
 }
 
 // NEU: Diese Funktion wird bei BERÜHRUNG auf mobilen Geräten aufgerufen
-function touchMoved() {
+function touchMoved(event) {
     drawLine();
     // WICHTIG: Verhindert, dass die Seite beim Zeichnen scrollt
-    return false;
+    event.preventDefault();
 }
 
-// NEU: Setzt die Startposition beim Klicken oder Tippen zurück
+// NEU: Event-Listener für den Start eines Strichs
 function mousePressed() {
-    px = mouseX;
-    py = mouseY;
+    startStroke();
 }
 function touchStarted() {
-    px = mouseX;
-    py = mouseY;
+    startStroke();
 }
+
 
 
 // Die alte draw()-Funktion wird nicht mehr zum Zeichnen benötigt
